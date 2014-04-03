@@ -51,7 +51,7 @@ node['dotfiles']['vimusers'].each do |username|
     action :create
   end
 
-  colorscheme = node['dotfiles']['vim']['colorscheme']
+  colorscheme = node['dotfiles']['vimcolorscheme']
 
   if colorscheme.is_a? Hash
     (colorscheme, src) = colorscheme.first
