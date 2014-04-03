@@ -1,5 +1,9 @@
 node.default['dotfiles']['vimusers'] = [node['current_user']]
 
+node.default["dotfiles"]["vim"]["colorscheme"] = {
+  "Tomorrow-Night-Eighties" => "https://raw.github.com/chriskempson/tomorrow-theme/master/vim/colors/Tomorrow-Night-Eighties.vim"
+}
+
 node.default["dotfiles"]["vim"]["bundle"] = [
   {"sleuth" => "git://github.com/tpope/vim-sleuth.git"},
   {"sensible" => "git://github.com/tpope/vim-sensible.git"},

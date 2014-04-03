@@ -51,15 +51,23 @@ node['dotfiles']['vimusers'].each do |username|
     action :create
   end
 
-  remote_file "#{homepath.call}/.vim/colors/Tomorrow-Night-Eighties.vim" do
-      source "https://raw.github.com/chriskempson/tomorrow-theme/master/vim/colors/Tomorrow-Night-Eighties.vim"
-      mode 00755
-      owner username
-      action :create_if_missing
+  colorscheme = node['dotfiles']['vim']['colorscheme']
+
+  if colorscheme.is_a? Hash
+    (colorscheme, src) = colorscheme.first
+    remote_file "#{homepath.call}/.vim/colors/#{colorscheme}.vim" do
+        source src
+        mode 00755
+        owner username
+        action :create_if_missing
+    end
   end
 
   template "#{homepath.call}/.vimrc" do
     source "vimrc.erb"
     owner username
+    variables(
+      :colorscheme => colorscheme
+    )
   end
 end
